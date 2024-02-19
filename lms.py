@@ -23,9 +23,9 @@ class Library:
                 book = book.split(",")  # separates items after a comma
                 print(f" *Book-{i+1}: {book[0].upper()}, Author: {book[1].upper()}")
             print(f"\033[1m {stars} \033[0m")
-            print(f" There are a total of \033[1m'{len(books)}'\033[0m books in the library.\n")
+            print(f" There are a total of \033[1m'{len(books)}'\033[0m books in the library.\n\n\n")
         else:
-            print("\n There are no registered books in the library yet.\n")
+            print("\n There are no registered books in the library yet.\n\n\n")
 
     def Add_Book(self):
         space = " " * 26
@@ -36,7 +36,7 @@ class Library:
         while True:
             book_title = input("\033[1m *Enter book title: \033[0m")
             if book_title.strip() == "b" or book_title == "4":
-                print(" \n Returning to the menu...")
+                print(" \n Returning to the menu...\n\n\n")
                 return
             elif not book_title.strip():  # Check if book_title is empty or contains only whitespace
                 print(" Invalid input! Please enter a valid book title.")
@@ -46,7 +46,7 @@ class Library:
         while True:
             author = input("\033[1m *Enter book author: \033[0m")
             if author.strip() == "b" or author == "4":
-                print(" \n Returning to the menu...")
+                print(" \n Returning to the menu...\n\n\n")
                 return
             elif not author.strip():  # Check if author is empty or contains only whitespace
                 print(" Invalid input! Please enter a valid author.")
@@ -58,7 +58,7 @@ class Library:
         while True:
             release_year = input("\033[1m *Enter release year (between 1-9999 in YYYY): \033[0m")
             if release_year.strip() == "b" or release_year == "4":
-                print(" \n Returning to the menu...")
+                print(" \n Returning to the menu...\n\n\n")
                 return
             elif not release_year.strip():  # Check if release_year is empty or contains only whitespace
                 print(" Invalid input! Please enter a valid release year.")
@@ -70,7 +70,7 @@ class Library:
         while True:
             num_pages = input("\033[1m *Enter number of pages: \033[0m")
             if num_pages.strip() == "b" or num_pages == "4":
-                print(" \n Returning to the menu...")
+                print(" \n Returning to the menu...\n\n\n")
                 return
             elif not num_pages.strip():  # Check if num_pages is empty or contains only whitespace
                 print(" Invalid input! Please enter a valid number of pages.")
@@ -83,7 +83,7 @@ class Library:
         self.db.write(book)
         self.db.seek(0)
         print(f"\033[1m {stars} \033[0m")
-        print(f" Book \033[1m'{book_title.upper()}'\033[0m added successfully.")
+        print(f" Book \033[1m'{book_title.upper()}'\033[0m added successfully.\n\n\n")
 
 
 
@@ -96,7 +96,7 @@ class Library:
         while True:
             title_to_remove = input("\033[1m *Enter the title of the book to remove:\033[0m ").strip()
             if title_to_remove.strip() == "b" or title_to_remove == "4":
-                print(" \n Returning to the menu...")
+                print(" \n Returning to the menu...\n\n\n")
                 return
             elif not title_to_remove:  # Check if title_to_remove is empty or contains only whitespace
                 print(" Invalid input! Please enter a valid title to remove.")
@@ -135,7 +135,7 @@ while True:
     \n \033[1m(4)\033[0m Back to Menu (or b)
     \n \033[1m(5)\033[0m Exit (or q)
     """)
-    choice = input(" \033[1mEnter your choice (1/2/3/4/5):\033[0m ")
+    choice = input(" \033[1mEnter your choice (1/2/3/4/5):\033[0m \n\n\n")
 
     if choice == "1":
         lib.List_Books()
