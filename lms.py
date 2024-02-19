@@ -118,83 +118,6 @@ class Library:
                 print(f" Book \033[1m'{title_to_remove.upper()}'\033[0m removed successfully. \033[0m")
                 break
 
-    def Edit_Book_Info(self):
-        space = " " * 16
-        stars = "*" * 60 
-        print(f"\n{space}\033[1m EDIT BOOK INFORMATION \033[0m{space}") 
-        print(f"\033[1m {stars} \033[0m")
-
-        while True:
-            # Ask which book you want to edit
-            book_to_edit = input("Enter the title of the book to edit: ")
-            if book_to_edit.strip() == "b" or book_to_edit == "5":
-                print(" \n Back to the menu...")
-                return
-            elif not book_to_edit.strip():
-                print(" Invalid input! Please enter a valid book to edit.")
-                continue
-
-            # Check if the specified book exists
-            found = False
-            with open("books.txt", "r", encoding="utf-8") as file:
-                for line in file:
-                    if book_to_edit.lower() in line.lower():
-                        found = True
-                        break
-            if not found:
-                print("The specified book does not exist.")
-                continue
-
-            # Get the index of the book to edit
-            with open("books.txt", "r", encoding="utf-8") as file:
-                lines = file.readlines()
-                book_index = None
-                for i, line in enumerate(lines):
-                    if book_to_edit.lower() in line.lower():
-                        book_index = i
-                        break
-
-            # Ask which information to edit
-            print("Which information would you like to edit?")
-            print("1. Book Title")
-            print("2. Author")
-            print("3. Release Year")
-            print("4. Number of Pages")
-            print("5. Back to the menu")
-            choice = input("Enter your choice (1/2/3/4/5): ")
-
-            if choice == "5":
-                print("Back to the menu...")
-                return
-            elif choice not in ["1", "2", "3", "4"]:
-                print("Invalid choice.")
-                continue
-
-            # Determine the field name based on the choice
-            field_names = ["Book Title", "Author", "Release Year", "Number of Pages"]
-            field_name = field_names[int(choice) - 1]
-
-            # Get the new information
-            new_info = input(f"Enter the new {field_name}: ").strip()
-            if not new_info:
-                print("Invalid input! Please enter a valid value.")
-                continue
-
-            # Update the information in the file
-            with open("books.txt", "r+", encoding="utf-8") as file:
-                lines = file.readlines()
-                lines[book_index] = lines[book_index].split(",")
-                lines[book_index][field_names.index(field_name)] = new_info
-                lines[book_index] = ",".join(lines[book_index])
-                file.seek(0)
-                file.truncate()
-                file.writelines(lines)
-
-            print(f"{field_name} information edited successfully.")
-
-
-
-
 
 # # condition-3 : Creating an object named "lib" with "Library" class
 lib = Library()
@@ -209,11 +132,10 @@ while True:
     \n \033[1m(1)\033[0m List Books
     \n \033[1m(2)\033[0m Add Book
     \n \033[1m(3)\033[0m Remove Book
-    \n \033[1m(4)\033[0m Düzenle (or q)
-    \n \033[1m(5)\033[0m Back to Menu (or b)
-    \n \033[1m(6)\033[0m Exit (or q)
+    \n \033[1m(4)\033[0m Back to Menu (or b)
+    \n \033[1m(5)\033[0m Exit (or q)
     """)
-    choice = input(" \033[1mEnter your choice (1/2/3/4/5/6):\033[0m ")
+    choice = input(" \033[1mEnter your choice (1/2/3/4/5):\033[0m ")
 
     if choice == "1":
         lib.List_Books()
@@ -221,14 +143,12 @@ while True:
         lib.Add_Book()
     elif choice == "3":
         lib.Remove_Book()
-    elif choice == "4":
-        lib.Edit_Book_Info()
-    elif choice.lower() == "b" or choice == "5":
+    elif choice.lower() == "b" or choice == "4":
         print(" \n Returning to the menu...")
         continue
-    elif choice.lower() == "q" or choice == "6":
+    elif choice.lower() == "q" or choice == "5":
         print(" \n Exiting...\n")
         del lib
         break
     else:
-        print("Invalid choice. Please enter a valid option (1/2/3/4/5/6).")
+        print("Invalid choice. Please enter a valid option (1/2/3/4).")
